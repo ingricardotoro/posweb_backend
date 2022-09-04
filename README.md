@@ -1,2 +1,2 @@
-# posweb_backend
-PosWeb Backend - Dataplus 
+# PosWeb Backend - Dataplus 
+Sistema de ventas
