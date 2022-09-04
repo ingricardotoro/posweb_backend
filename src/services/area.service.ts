@@ -25,6 +25,7 @@ export async function findArea(
 ){
     try {
         const area = await Area.findById(areaId);
+        
         return area;
     } catch (error: any) {
         throw new Error(error);

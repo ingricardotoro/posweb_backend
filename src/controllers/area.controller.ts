@@ -21,7 +21,7 @@ export async function createAreaHandler(req: Request<{}, {}, CreateAreaInput["bo
         
         const areaSave = {
             ...req.body,
-            codeArea: `${req.body.nameArea}-${req.body.index}`,
+            codeArea: `${req.body.nameArea}-0${req.body.index}`,
             isActive: true 
         }
 
@@ -45,6 +45,7 @@ export async function createAreaHandler(req: Request<{}, {}, CreateAreaInput["bo
 export async function findAreasHandler(req: Request, res: Response){
     try {
         const areas = await findAreas();
+        
         return res.status(200).json({
             ok: true,
             data: areas
