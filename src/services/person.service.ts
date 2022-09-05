@@ -5,6 +5,7 @@ import Person, { PersonDocument } from '../models/person.model';
 export async function createPerson(input: DocumentDefinition<Omit<PersonDocument, 'createdAt' | 'updatedAt'>>){
     try {
         const person = await Person.create(input);
+        
         return person;
     } catch (error: any) {
         throw new Error(error);

@@ -12,7 +12,7 @@ export interface EmployeeDocument extends mongoose.Document {
 
 const employeeSchema = new mongoose.Schema({
     person: { type: mongoose.Schema.Types.ObjectId, ref:'Person' },
-    codeEmployee: { type: String, required: true },
+    codeEmployee: { type: String, required: true, unique: true },
     workLocation: { type: String, trim: true },
     isActive: { type: Boolean, default: true }
 },{

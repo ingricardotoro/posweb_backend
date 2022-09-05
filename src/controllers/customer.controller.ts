@@ -91,6 +91,7 @@ export async function createCustomerHandler(req: Request<{}, {}, CreateCustomerI
 export async function findCustomersHandler(req: Request, res: Response){
     try {
         const customers = await findCustomers();
+
         return res.status(200).json({
             ok: true,
             data: customers
@@ -123,6 +124,7 @@ export async function findCustomerHandler(req: Request<ReadCustomerInput['params
         });
     } catch (error: any) {
         logger.error(error);
+
         return res.status(409).json({
             ok: false,
             message: error.message 
@@ -154,6 +156,7 @@ export async function updateCustomerHandler(
 
     } catch (error: any) {
         logger.error(error);
+        
         return res.status(409).json({
             ok: false,
             message: error.message 

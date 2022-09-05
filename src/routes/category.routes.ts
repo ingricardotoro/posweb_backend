@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import validateResource from '../middlewares/validateResource';
+import requireUser from '../middlewares/requireUser';
 
 //Categories
 import { 
@@ -21,9 +22,9 @@ const router = Router();
 
 // Categories routes
 router.get('/api/categories', findCategoriesHandler);
-router.get('/api/categories/:categoryId', validateResource(getCategorySchema), findCategoryHandler);
-router.post('/api/categories', validateResource(createCategorySchema), createCategoryHandler);
-router.put('/api/categories/:categoryId', validateResource(updateCategorySchema), updateCategoryHandler);
-router.delete('/api/categories/:categoryId', validateResource(deleteCategorySchema), deleteCategoryHandler);
+router.get('/api/categories/:categoryId', [requireUser, validateResource(getCategorySchema)], findCategoryHandler);
+router.post('/api/categories', [requireUser, validateResource(createCategorySchema)], createCategoryHandler);
+router.put('/api/categories/:categoryId', [requireUser, validateResource(updateCategorySchema)], updateCategoryHandler);
+router.delete('/api/categories/:categoryId', [requireUser, validateResource(deleteCategorySchema)], deleteCategoryHandler);
 
 export default router;

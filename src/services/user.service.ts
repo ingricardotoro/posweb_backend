@@ -2,7 +2,7 @@ import { isNull, omit } from 'lodash';
 import { DocumentDefinition, FilterQuery, QueryOptions, UpdateQuery } from 'mongoose'; 
 import User, { UserDocument } from '../models/user.model';
 
-export async function createUser(input: DocumentDefinition<Omit<UserDocument, 'createdAt' | 'updatedAt'>>){
+export async function createUser(input: DocumentDefinition<Omit<UserDocument, 'createdAt' | 'updatedAt' | 'comparePassword'>>){
     try {
         const user = await User.create(input);
         return omit(user.toJSON(), 'password');
@@ -24,7 +24,28 @@ export async function findUser(
     userId: string 
 ){
     try {
-        const user = await User.findById(userId).select('-password').where({ rol: 'User' });
+        const user = await User.findById(userId).select('-password');
+        
+        return user;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function findUserByEmail(email: string) {
+    try {
+        const user = await User.findOne({ email });
+
+        return user;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function findUserByUserName(username: string) {
+    try {
+        const user = await User.findOne({ username });
+
         return user;
     } catch (error: any) {
         throw new Error(error);

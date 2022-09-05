@@ -28,7 +28,7 @@ const personSchema = new mongoose.Schema({
     lastName: { type: String, required: true, trim: true },
     rtn: { type: String, trim: true },
     birth: { type: Date, default: Date.now },
-    gender: { type: String, enum: ['Male', 'Female'] },
+    gender: { type: String, enum: ['Masculino', 'Femenino'] },
     email: { type: String, required:true, unique:true },
     phone1: { type: String, trim: true },
     phone2: { type: String, trim: true },

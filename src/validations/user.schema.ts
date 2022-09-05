@@ -16,8 +16,14 @@ const payload = {
         .trim(),
 
         lastName: string({
-            required_error: 'Last Name is required'
+            required_error: 'Apellido es requerido'
         }).min(2, { message: 'Debe tener 2 o más caracteres de largo'})
+        .trim(),
+
+        username: string({
+            required_error: 'Nombre de usuario es requerido'
+        })
+        .min(2, { message: 'Debe tener 2 o más caracteres de largo'})
         .trim(),
 
         rtn: string()
@@ -25,8 +31,12 @@ const payload = {
             .trim(),
 
         gender: string().trim(),
+
+        rol: string({
+            required_error: 'Rol de usuario es requerido'
+        }).trim(),
         
-        birth: string().optional(), //string().optional(), z.date.toString()
+        birth: string(),
 
         email: string({
             required_error: 'Email es requerido'
@@ -44,19 +54,23 @@ const payload = {
 
         phone1: string({ required_error: 'Telefono es requerido'}).trim(),
 
-        phone2: string().trim().optional(),
+        phone2: string().trim(),
 
-        location: string().trim().optional(),
+        location: string().trim(),
 
-        country: string().trim().optional(),
+        country: string().trim(),
 
-        city: string().trim().optional(),
+        city: string().trim(),
 
-        facebook: string().trim().optional(),
+        website: string().trim(),
 
-        twitter: string().trim().optional(),
+        facebook: string().trim(),
 
-        linkedin: string().trim().optional(),
+        twitter: string().trim(),
+
+        linkedin: string().trim(),
+
+        workLocation: string().trim(),
 
     }).refine((data) => data.password === data.passwordConfirm, {
         message: 'Password do not match',
@@ -82,6 +96,13 @@ const updatePayload = {
 
         lastName: string({
             invalid_type_error: 'Last Name must be a string'
+        })
+        .trim()
+        .min(2, { message: 'Debe tener 2 o más caracteres de largo'})
+        .optional(),
+
+        username: string({
+            invalid_type_error: 'Username must be a string'
         })
         .trim()
         .min(2, { message: 'Debe tener 2 o más caracteres de largo'})
@@ -118,13 +139,28 @@ const updatePayload = {
 
         city: string().optional(),
 
+        website: string().optional(),
+
         facebook: string().optional(),
 
         twitter: string().optional(),
 
         linkedin: string().optional(),
+
+        workLocation: string().optional()
     })
 };
+
+const loginPayload = {
+    body: object({
+        username: string({
+            required_error: 'Nombre de usuario es requerido'
+        }).trim(),
+        password: string({
+            required_error: 'Password es requerido'
+        })
+    }).strict()
+}
 
 const params = {
     params: object({
@@ -151,7 +187,17 @@ export const deleteUserSchema = object({
     ...params 
 });
 
+export const loginSchema = object({
+    ...loginPayload
+});
+
+export const updateProfileSchema = object({
+    ...updatePayload
+})
+
 export type CreateUserInput = Omit<TypeOf<typeof createUserSchema>, 'body.passwordConfirm'>;
 export type UpdateUserInput = TypeOf<typeof updateUserSchema>;
 export type ReadUserInput = TypeOf<typeof getUserSchema>;
 export type DeleteUserInput = TypeOf<typeof deleteUserSchema>;
+export type LoginUserInput = TypeOf<typeof loginSchema>; 
+export type ProfileUserInput = TypeOf<typeof updateProfileSchema>;

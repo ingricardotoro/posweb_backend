@@ -12,7 +12,8 @@ export interface UserDocument extends mongoose.Document {
     employee: EmployeeDocument['_id'];
     isActive: boolean;
     createdAt: Date;
-    updatedAt: Date;  
+    updatedAt: Date;
+    comparePassword(candidatePassword: string): Promise<Boolean>;  
 }
 
 const userSchema = new mongoose.Schema({
