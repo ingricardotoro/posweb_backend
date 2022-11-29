@@ -16,7 +16,7 @@ function createServer() {
   //app.options('*', cors());
   app.use(
     cors({
-      origin: 'https://dataplushn.com',
+      origin: 'https://dataplushn.com/',
     })
   );
   app.use(express.json());
