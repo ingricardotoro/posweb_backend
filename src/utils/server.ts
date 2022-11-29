@@ -1,18 +1,19 @@
-import express from "express";
-import cors from "cors"; 
-import router from "../routes";
-import deserializeUser from "../middlewares/deserializeUser";
+import express from 'express';
+import cors from 'cors';
+import router from '../routes';
+import deserializeUser from '../middlewares/deserializeUser';
 
-function createServer()  {
-    const app = express();
+function createServer() {
+  const app = express();
 
-    app.use(cors());
-    app.use(express.json());
-    app.use(deserializeUser); 
+  app.options('*', cors());
+  app.use(cors());
+  app.use(express.json());
+  app.use(deserializeUser);
 
-    app.use(router);
+  app.use(router);
 
-    return app; 
+  return app;
 }
 
 export default createServer;
