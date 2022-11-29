@@ -12,9 +12,9 @@ function createServer() {
     optionSuccessStatus: 200,
   };
 
-  app.use(cors(corsOptions));
-  app.options('https://dataplushn.com', cors());
-  //app.use(cors());
+  //app.use(cors(corsOptions));
+  //app.options('https://dataplushn.com', cors());
+  app.use(cors());
   app.use(express.json());
   app.use(deserializeUser);
 
