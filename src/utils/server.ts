@@ -12,13 +12,13 @@ function createServer() {
     optionSuccessStatus: 200,
   };
 
-  //app.use(cors(corsOptions));
+  app.use(cors(corsOptions));
   //app.options('*', cors());
-  app.use(
+  /* app.use(
     cors({
-      origin: 'https://dataplushn.com/',
+      origin: 'https://dataplushn.com',
     })
-  );
+  ); */
   app.use(express.json());
   app.use(deserializeUser);
 
