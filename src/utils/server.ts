@@ -13,7 +13,7 @@ function createServer() {
   };
 
   //app.use(cors(corsOptions));
-  //app.options('https://dataplushn.com', cors());
+  app.options('*', cors());
   app.use(cors());
   app.use(express.json());
   app.use(deserializeUser);
