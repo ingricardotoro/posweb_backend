@@ -8,6 +8,7 @@ function createServer() {
 
   const corsOptions = {
     origin: 'https://dataplushn.com',
+    //origin: 'http://localhost:5173',
     credentials: true, //access-control-allow-credentials:true
     optionSuccessStatus: 200,
   };
@@ -18,6 +19,7 @@ function createServer() {
   app.use(
     cors({
       origin: 'https://dataplushn.com',
+      //origin: 'http://localhost:5173',
     })
   );
   app.use(express.json());
