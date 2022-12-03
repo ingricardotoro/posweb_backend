@@ -7,7 +7,7 @@ function createServer() {
   const app = express();
 
   const corsOptions = {
-    origin: ['https://dataplushn.com'],
+    origin: ['https://dataplushn.com/', 'http://localhost:5173'],
     //origin: 'http://localhost:5173',
     credentials: true, //access-control-allow-credentials:true
     optionSuccessStatus: 200,
@@ -18,7 +18,7 @@ function createServer() {
   app.options('*', cors());
   app.use(
     cors({
-      origin: ['https://dataplushn.com/'],
+      origin: ['https://dataplushn.com/', 'http://localhost:5173'],
       //origin: 'http://localhost:5173',
     })
   );
